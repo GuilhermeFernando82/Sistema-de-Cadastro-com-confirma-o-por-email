@@ -1,8 +1,8 @@
 <?php
 
 	try {
-		$dns = "mysql:dbname=u602296227_newda;host=localhost";
-		$user = "nome do banco de dados";
+		$dns = "mysql:dbname='nomedobancodedados';host=localhost";
+		$user = "nome do usuário";
 		$pass = "Senha do banco de dados";
 		$pdo = new PDO($dns, $user, $pass);
 	}catch (PDOException $e){
@@ -39,15 +39,15 @@
             </script>";}
     else{   
     		$nome = addslashes($_POST['nome']);
-			$email = addslashes($_POST['email']);
-			$user = addslashes($_POST['usuario']);
-			$senha = md5(addslashes($_POST['senha']));
+			$email = htmlspecialchars(addslashes($_POST['email']));
+			$user = htmlspecialchars(addslashes($_POST['usuario']));
+			$senha = md5(htmlspecialchars(addslashes($_POST['senha'])));
 			$ip = $_SERVER["REMOTE_ADDR"];
 			
 			$pdo->query("INSERT INTO tabela3 SET nome= '$nome', email= '$email', usuario= '$user', senha= '$senha', ip= '$ip'");
 			$id = $pdo->lastInsertId();
 			$md5 = md5($id);
-			$link = "http://newwebcraftprogram.esy.es/confirma.php?h=".$md5;
+			$link = "seu_endereco/confirma.php?h=".$md5;
 
 			$assunto = "Confirme seu cadastro";
 			$mensagem = "Clique aqui para confirmar seu cadastro\n\n".$link;
