@@ -1,6 +1,6 @@
 <?php
-	$dns = "mysql:dbname=u602296227_newda;host=localhost";
-	$user = "Nome do banco de dados";
+	$dns = "mysql:dbname='nomedobancodedados;host=localhost";
+	$user = "usuário";
 	$pass = "Senha do Banco de dados";
 
 	try {
@@ -8,7 +8,7 @@
 	}catch (PDOException $e){
 		echo "Falha: ". $e->getMessage();
 	}
-	$h = $_GET['h'];
+	$h = htmlspecialchars(addslashes($_GET['h']));
 	if (!empty($h) ) {
 		$pdo->query("UPDATE tabela3 SET status='1' WHERE MD5(id) = '$h'");
 		echo "<script>alert('Cadastro confirmado com Sucesso!!!)</script>";
