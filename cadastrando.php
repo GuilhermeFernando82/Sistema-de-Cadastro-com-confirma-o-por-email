@@ -38,7 +38,7 @@
             location.href='sistema de cadastro.php';
             </script>";}
     else{   
-    		$nome = addslashes($_POST['nome']);
+    			$nome = htmlspecialchars(addslashes($_POST['nome']));
 			$email = htmlspecialchars(addslashes($_POST['email']));
 			$user = htmlspecialchars(addslashes($_POST['usuario']));
 			$senha = md5(htmlspecialchars(addslashes($_POST['senha'])));
